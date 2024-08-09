@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title> MW's Hubs | Backend</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <link rel="icon" href="M W’s (2).png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+
+<style>
+  .model-card {
+      border: 1px solid #ccc;
+      padding: 100px ;
+      margin: 6px;
+      border-radius: 10px;
+      text-align: center;
+  }
+  .model-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+  }
+
+  .model-card:hover{
+    transition: 1s;
+    transform: scale(1.0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px #fff, 0 0 
+    30px #fff, 0 0 70px , 0 0 70px #0ff;;
+    
+}
+
+  .buy-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+  }
+  .buy-button:hover {
+      background-color: #45a049;
+  }
+
+</style>
+
+<body>
+
+    <header>
+        <div class="popup-backdrop"></div> 
+  <nav>
+    <ul class="nav-bar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://discord.gg/T2rSCGTJ45">Discord Server</a></li>
+        <li><a href="backends.html">Backends</a></li>
+        <li><a href="#contact-us">Contact</a></li>
+    </ul>
+  </nav>
+  <br><br><br><br> <br><br><br><br><img src="M W’s (2).png" alt="MC nation pfp" class="mc-nation-image" style="max-width: 100%; height: 250px; width: 250px; border-radius: 10%;">
+          <div class="container2">
+          <h1>Welcome to MW's Hub  Page </h1><br><br><br><br><br><br>
+          </div>
+  <br><br>
+  <div class="#discord"></div>
+        <div class="button-container">
+  <a href="https://discord.gg/8PQW9rqzp7" id="discord-button" class="discord-button">Discord</a>
+        </div>
+      <br><br><br><br>
+      <section id="more-about-us">
+     <h3> Here you will get our Blender Models</h3>
+     <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      </section>
+      
+      <main>
+        <section id="models-for-sale">
+            <h5>Models for Sale</h5>
+
+            <div class="model-card">
+                <canvas id="model1-canvas"></canvas>
+                <h4>Model 1</h4>
+                <p>Description of Model 1</p>
+                <p>Price: $10</p>
+                <a href="purchase-link-1" class="buy-button">Buy Now</a>
+            </div>
+
+            <div class="model-card">
+                <canvas id="model2-canvas"></canvas>
+                <h4>Model 2</h4>
+                <p>Description of Model 2</p>
+                <p>Price: $15</p>
+                <a href="purchase-link-2" class="buy-button">Buy Now</a>
+            </div>
+          
+        <br> <br> <br><br><br><br><br><br>
+        <h3>More Coming 🌟 Soon 🌟</h3><br> <br> <br><br><br><br><br><br>
+        <section>
+            <h5>Contact Us</h5>
+            <h4>Feel free to contact us on our Discord.</h4>
+         </section>
+    
+          <section>
+    <div class="contact"></div>
+    <div class="button-container">
+            <a href="https://discord.gg/8PQW9rqzp7" class="discord-button">Discord</a>
+            
+            <br> <br> <br><br><br><br><br><br>
+            </div>
+          </section>
+    </main>
+
+
+</body>
+<footer>
+  <h6 id="madeBy">Made By Skypop18<span style="color: rgb(160, 22, 240);"> (Server Owner)</span></h6>
+  <div class="dc">
+    <iframe src="https://discord.com/widget?id=1028147578673573949&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+  </div>
+  <script>
+     document.getElementById('madeBy').addEventListener('click', function () {
+          window.location.href = 'https://www.instagram.com/_sky_ak47/';
+      });
+  </script>
+
+<script>
+    // Function to load and display 3D models
+    function loadModel(canvasId, modelUrl) {
+        const canvas = document.getElementById(canvasId);
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas });
+        
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        camera.position.z = 5;
+
+        const light = new THREE.AmbientLight(0x404040); // soft white light
+        scene.add(light);
+
+        const loader = new THREE.GLTFLoader();
+        loader.load(modelUrl, function (gltf) {
+            scene.add(gltf.scene);
+            animate();
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+    }
+
+    // Load models
+    loadModel('model1-canvas', 'model1.glb');
+    loadModel('model2-canvas', 'model2.glb');
+  </script>
+</footer>
+</body>
+</html>
